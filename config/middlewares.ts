@@ -6,7 +6,7 @@ export default ({ env }) => [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: env('CORS_ORIGIN', 'https://ecommerce-tech-frontend-three.vercel.app').split(','),
+      origin: env('CLIENT_URL', 'https://ecommerce-tech-frontend-three.vercel.app').split(','),
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
       credentials: true,
