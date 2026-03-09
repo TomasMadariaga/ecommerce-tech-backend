@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brand": {
+      "type": "enumeration",
+      "enum": [
+        "AMD",
+        "Intel",
+        "NVIDIA",
+        "AMD Radeon",
+        "Samsung",
+        "WD",
+        "Crucial",
+        "Lexar",
+        "ASUS",
+        "MSI",
+        "GIGABYTE",
+        "ASRock",
+        "HP",
+        "Lenovo",
+        "Dell",
+        "Acer"
+      ]
+    },
+    "model": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "model"
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    }
+  }
+}
