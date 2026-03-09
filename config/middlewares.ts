@@ -1,5 +1,4 @@
-// config/env/production/middlewares.js
-export default [
+export default ({ env }) => [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
@@ -7,7 +6,7 @@ export default [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://ecommerce-tech-frontend-three.vercel.app'],
+      origin: env('CORS_ORIGIN', 'https://ecommerce-tech-frontend-three.vercel.app').split(','),
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
       credentials: true,
