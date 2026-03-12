@@ -1,27 +1,49 @@
 export default ({ env }) => [
-  'strapi::logger',
-  'strapi::errors',
-  'strapi::security',
+  "strapi::logger",
+  "strapi::errors",
   {
-    name: 'strapi::cors',
+    name: "strapi::security",
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          "connect-src": ["'self'", "https:"],
+          "img-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
+          "media-src": ["'self'", "data:", "blob:", "res.cloudinary.com"],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
+  {
+    name: "strapi::cors",
     config: {
       enabled: true,
-      origin: env('CLIENT_URL', 'https://ecommerce-tech-frontend-three.vercel.app').split(','),
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
-      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+      origin: env(
+        "CLIENT_URL",
+        "https://ecommerce-tech-frontend-three.vercel.app",
+      ).split(","),
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
+      headers: [
+        "Content-Type",
+        "Authorization",
+        "Origin",
+        "Accept",
+        "X-Requested-With",
+      ],
       credentials: true,
       keepHeadersOnError: true,
     },
   },
-  'strapi::poweredBy',
-  'strapi::query',
+  "strapi::poweredBy",
+  "strapi::query",
   {
-    name: 'strapi::body',
+    name: "strapi::body",
     config: {
       includeUnparsed: true,
     },
   },
-  'strapi::session',
-  'strapi::favicon',
-  'strapi::public',
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
