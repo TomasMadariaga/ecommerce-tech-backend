@@ -6,11 +6,12 @@ export default ({ env }) => {
     const connections = {
         mysql: {
             connection: {
-                host: env("DATABASE_HOST", "localhost"),
-                port: env.int("DATABASE_PORT", 3306),
-                database: env("DATABASE_NAME", "strapi"),
-                user: env("DATABASE_USERNAME", "strapi"),
-                password: env("DATABASE_PASSWORD", "strapi"),
+                connectionString: env("DATABASE_URL"),
+                // host: env("DATABASE_HOST", "localhost"),
+                // port: env.int("DATABASE_PORT", 3306),
+                // database: env("DATABASE_NAME", "strapi"),
+                // user: env("DATABASE_USERNAME", "strapi"),
+                // password: env("DATABASE_PASSWORD", "strapi"),
                 ssl: env.bool("DATABASE_SSL", false) && {
                     key: env("DATABASE_SSL_KEY", undefined),
                     cert: env("DATABASE_SSL_CERT", undefined),
@@ -19,7 +20,7 @@ export default ({ env }) => {
                     cipher: env("DATABASE_SSL_CIPHER", undefined),
                     rejectUnauthorized: env.bool(
                         "DATABASE_SSL_REJECT_UNAUTHORIZED",
-                        true
+                        false
                     ),
                 },
             },
