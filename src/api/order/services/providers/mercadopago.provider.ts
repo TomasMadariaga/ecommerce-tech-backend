@@ -19,7 +19,7 @@ export class MercadoPagoProvider {
           currency_id: "AR",
           unit_price: Number(item.price) * usdToArs,
           picture_url: item.images?.[0]?.url
-            ? process.env.API_URL + item.images[0].url
+            ? process.env.NEXT_PUBLIC_BACKEND_URL + item.images[0].url
             : undefined,
         })),
         payer: {
@@ -27,13 +27,13 @@ export class MercadoPagoProvider {
           email: order.user?.email || "johndoe@gmail.com",
         },
         back_urls: {
-          success: "https://google.com", // PRUEBA CON URL HTTPS
+          success: process.env.CLIENT_URL + "/success",
           failure: process.env.CLIENT_URL + "/cart?failed=true",
           pending: process.env.CLIENT_URL + "/pending",
         },
         auto_return: "approved",
         notification_url:
-          process.env.API_URL + "/api/orders/mercadopago-webhook",
+          process.env.NEXT_PUBLIC_BACKEND_URL + "/api/orders/mercadopago-webhook",
         external_reference: order.documentId,
         payment_methods: {
           installments: 12,
